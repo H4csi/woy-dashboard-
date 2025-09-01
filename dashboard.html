@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Greenhouse Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <svg fill="var(--primary-color)" width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M23,17.477V13a1,1,0,0,0-2,0v4.477a8.468,8.468,0,0,0-5,7.974V26H11V25.451a8.468,8.468,0,0,0-5-7.974V13a1,1,0,0,0-2,0v4.477a8.468,8.468,0,0,0-2.9,2.839,1,1,0,1,0,1.732,1A6.449,6.449,0,0,1,5,17.523V13a3,3,0,0,1,6,0v4.523a6.449,6.449,0,0,1,2.1,1.709,1,1,0,0,0,1.732-1A8.468,8.468,0,0,0,11,17.477V13a3,3,0,0,1,6,0v4.477a8.468,8.468,0,0,0,3.9,5.653,1,1,0,1,0,1-1.732A6.449,6.449,0,0,1,19,21.314V13a3,3,0,0,1,6,0v4.523a6.449,6.449,0,0,1,2.1,1.709,1,1,0,1,0,1.732-1A8.468,8.468,0,0,0,23,17.477Z"/></svg>
+            <span>Smart Greenhouse</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#" class="active">DASHBOARD</a></li>
+            <li><a href="#">OUR TEAM</a></li>
+        </ul>
+    </header>
+
+    <main class="dashboard">
+        <section class="panel">
+            <h2 class="panel-title">Overview Panel</h2>
+            <div class="card-container">
+                 <div class="card overview-card">
+                    <div class="icon">✔️</div><div class="info"><p>Green House Status</p><h3 id="greenhouse-status">Connecting...</h3></div>
+                </div>
+                <div class="card overview-card">
+                    <div class="icon">🕒</div><div class="info"><p>Time</p><h3 id="time-display">--:--</h3></div>
+                </div>
+                <div class="card overview-card">
+                    <div class="icon">📅</div><div class="info"><p>Date</p><h3 id="date-display">--/--/----</h3></div>
+                </div>
+                <div class="card overview-card">
+                    <div class="icon">📶</div><div class="info"><p>Connection Status</p><h3 id="connection-status">Connecting...</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2 class="panel-title">Sensor Monitoring</h2>
+            <div class="card-container">
+                <div class="card sensor-card">
+                    <div class="icon">🌡️</div><div class="details"><h3>Air temperature</h3><p class="value" id="temp-value">-- &deg;C</p></div>
+                </div>
+                <div class="card sensor-card">
+                    <div class="icon">💧</div><div class="details"><h3>Air Humidity</h3><p class="value" id="hum-value">-- %</p></div>
+                </div>
+                <div class="card sensor-card">
+                    <div class="icon">🌱</div><div class="details"><h3>Soil Moisture</h3><p class="value" id="soil-value">-- %</p></div>
+                </div>
+                <div class="card sensor-card">
+                    <div class="icon">☀️</div><div class="details"><h3>Light Intensity</h3><p class="value" id="light-value">-- %</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="automation-panel">
+            <h2 class="panel-title">Automation Control</h2>
+            <div class="panel-overlay" id="automation-overlay">
+                <div class="lock-icon">🔒</div>
+                <span>Kontrol Terkunci</span>
+            </div>
+            <div class="automation-container">
+                <div class="card control-card">
+                    <div class="text"><h3>Auto Mode</h3><p id="auto-mode-status-text">OFF</p></div>
+                    <label class="switch"><input type="checkbox" id="auto-mode-toggle"><span class="slider"></span></label>
+                </div>
+                <div class="card control-card manual-control-card" id="manual-control-card">
+                    <h3 class="text" id="manual-control-text">Run Now</h3>
+                    <label class="switch"><input type="checkbox" id="relay-status-indicator" disabled><span class="slider"></span></label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

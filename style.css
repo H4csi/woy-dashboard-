@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color-dark: #12221D;
+    --primary-color: #279C6F;
+    --card-color: #FFFFFF;
+    --text-color-light: #FFFFFF;
+    --text-color-dark: #000000;
+    --font-family: 'Poppins', sans-serif;
+    --color-connected: #27AE60;
+    --color-disconnected: #E74C3C;
+    --disabled-color-bg: #E9ECEF;
+    --disabled-color-fg: #BDBDBD;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    margin: 0;
+    padding: 2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.logo svg {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.75rem;
+    fill: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.nav-links a.active {
+    border-bottom: 3px solid var(--primary-color);
+    font-weight: 700;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.panel {
+    background: rgba(39, 156, 111, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.panel-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    text-align: left;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-color);
+    color: var(--text-color-dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.overview-card,
+.sensor-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.overview-card .icon {
+    font-size: 1.8rem;
+}
+
+.overview-card .info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.overview-card .info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.sensor-card .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.sensor-card h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.sensor-card .value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.automation-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.control-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-card .text h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.control-card .text p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 40px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(40px);
+}
+
+.manual-control-card {
+    background-color: var(--disabled-color-bg);
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+.manual-control-card.enabled {
+    background-color: var(--card-color);
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.manual-control-card .text {
+    color: var(--disabled-color-fg);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.manual-control-card.enabled .text {
+    color: var(--text-color-dark);
+}
+
+.manual-control-card.running .text {
+    color: var(--primary-color);
+}
+
+.status-active {
+    color: var(--color-connected);
+}
+
+.status-disconnected {
+    color: var(--color-disconnected);
+}
+
+.panel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(18, 34, 29, 0.85);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
