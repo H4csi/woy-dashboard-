@@ -23,6 +23,7 @@ const manualControlCard = document.getElementById("manual-control-card");
 const manualControlText = document.getElementById("manual-control-text");
 const relayStatusIndicator = document.getElementById("relay-status-indicator");
 const automationOverlay = document.getElementById("automation-overlay");
+const lockControlsButton = document.getElementById("lock-controls-button");
 
 function sendCommand(command) {
     console.log(`%cMENGIRIM PERINTAH: ${command}`, 'color: blue; font-weight: bold;');
@@ -131,18 +132,73 @@ function updateTime() {
 function unlockControls() {
     const enteredPassword = prompt("Masukkan password untuk membuka kontrol:");
     if (enteredPassword === password) {
+        localStorage.setItem('controlsUnlocked', 'true');
         automationOverlay.style.display = 'none';
+        lockControlsButton.style.display = 'inline';
         alert('Kontrol berhasil dibuka!');
     } else if (enteredPassword !== null) {
         alert('Password salah!');
     }
 }
 
+function lockControls() {
+    if (confirm('Anda yakin ingin mengunci kembali panel kontrol?')) {
+        localStorage.removeItem('controlsUnlocked');
+        location.reload();
+    }
+}
+
+// --- Event Listeners ---
 autoModeToggle.addEventListener('change', function() { sendCommand(this.checked ? 'AUTO_ON' : 'AUTO_OFF'); });
 manualControlCard.addEventListener('click', function() { if (manualControlCard.classList.contains('enabled')) { sendCommand('WATER_NOW'); } });
 automationOverlay.addEventListener('click', unlockControls);
+lockControlsButton.addEventListener('click', lockControls);
+
+// --- Inisialisasi ---
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('controlsUnlocked') === 'true') {
+        automationOverlay.style.display = 'none';
+        lockControlsButton.style.display = 'inline';
+    }
+});
 
 fetchData();
 updateTime();
 setInterval(fetchData, 8000);
 setInterval(updateTime, 1000);
+
+// Saat halaman sudah siap → tambahkan class loaded biar muncul dengan animasi
+// Saat halaman sudah siap → tambahkan class loaded biar muncul dengan animasi
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("loaded");
+  
+    // Tambahin event listener untuk semua link navbar
+    const links = document.querySelectorAll(".nav-links a");
+  
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        const targetUrl = link.getAttribute("href");
+  
+        // Kalau href diawali dengan # → berarti internal scroll, ga perlu reload
+        if (targetUrl.startsWith("#")) {
+          e.preventDefault();
+  
+          const section = document.querySelector(targetUrl);
+          if (section) {
+            section.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        } else {
+          // Kalau href ke file lain → kasih transisi keluar dulu
+          e.preventDefault();
+          document.body.classList.remove("loaded");
+  
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 500); // durasi sesuai CSS transition
+        }
+      });
+    });
+  });
