@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Greenhouse Dashboard</title>
-
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="navbar">
         <div class="logo">
-            <svg fill="var(--primary-color)" width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M23,17.477V13a1,1,0,0,0-2,0v4.477a8.468,8.468,0,0,0-5,7.974V26H11V25.451a8.468,8.468,0,0,0-5-7.974V13a1,1,0,0,0-2,0v4.477a8.468,8.468,0,0,0-2.9,2.839,1,1,0,1,0,1.732,1A6.449,6.449,0,0,1,5,17.523V13a3,3,0,0,1,6,0v4.523a6.449,6.449,0,0,1,2.1,1.709,1,1,0,0,0,1.732-1A8.468,8.468,0,0,0,11,17.477V13a3,3,0,0,1,6,0v4.477a8.468,8.468,0,0,0,3.9,5.653,1,1,0,1,0,1-1.732A6.449,6.449,0,0,1,19,21.314V13a3,3,0,0,1,6,0v4.523a6.449,6.449,0,0,1,2.1,1.709,1,1,0,1,0,1.732-1A8.468,8.468,0,0,0,23,17.477Z"/></svg>
-            <span>Smart Greenhouse</span>
+            <img src="Good Eco White Logo 2.png" alt="Logo" style="vertical-align:middle; margin-right:20px;">
+            <span>Smart Greenhouse</span>                    
         </div>
         <ul class="nav-links">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#" class="active">DASHBOARD</a></li>
-            <li><a href="#">OUR TEAM</a></li>
-        </ul>
+            <li><a href="index.html#home">HOME</a></li>
+            <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li><a href="index.html#team">OUR TEAM</a></li>
+          </ul>
     </header>
 
     <main class="dashboard">
@@ -61,7 +59,10 @@
         </section>
 
         <section class="panel" id="automation-panel">
-            <h2 class="panel-title">Automation Control</h2>
+            <h2 class="panel-title">
+                Automation Control
+                <span id="lock-controls-button" title="Kunci Kembali Kontrol">🔓</span>
+            </h2>
             <div class="panel-overlay" id="automation-overlay">
                 <div class="lock-icon">🔒</div>
                 <span>Kontrol Terkunci</span>
@@ -69,11 +70,11 @@
             <div class="automation-container">
                 <div class="card control-card">
                     <div class="text"><h3>Auto Mode</h3><p id="auto-mode-status-text">OFF</p></div>
-                    <label class="switch"><input type="checkbox" id="auto-mode-toggle"><span class="slider"></span></label>
+                    <label class="switch" for="auto-mode-toggle"><input type="checkbox" id="auto-mode-toggle"><span class="slider"></span></label>
                 </div>
                 <div class="card control-card manual-control-card" id="manual-control-card">
                     <h3 class="text" id="manual-control-text">Run Now</h3>
-                    <label class="switch"><input type="checkbox" id="relay-status-indicator" disabled><span class="slider"></span></label>
+                    <label class="switch" for="relay-status-indicator"><input type="checkbox" id="relay-status-indicator" disabled><span class="slider"></span></label>
                 </div>
             </div>
         </section>
@@ -82,4 +83,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
